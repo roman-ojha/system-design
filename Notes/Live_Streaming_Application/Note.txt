@@ -1,0 +1,45 @@
+=> Primary Concern:
+    -> Being able to see the video is the primary concern.
+-> After primary concerns we have to define the data
+    *> Product requirement docs -mapped_into-> Features / abstract concepts --> data definitions --> objects --> database
+-> After we define the database we can now define the endpoints through which we can manipulate data.
+-> You should have multiple servers spread across the world to avoid the single point of failure.
+-> You could also have multiple server inside the same country.
+-> Build a system that can Scale & Extend and when requirements change.
+-> Finally this design needs to be tested.
+
+*) Live Streaming Application:
+    *> Requirements:
+        1. Streaming video
+        2. Processing video
+        3. Broadcasting
+        4. FailProof
+        5. Advertisement
+        6. Reactions
+        7. Disclaimers/ News Flashes
+        8. Degradation of video quality
+        9. Multiple device support
+    -> We have to thing of various failure scenarios like what if the database storing the videos crashes, what if the specific firewall block all of the request.
+    -> For storing comments we can use SQL Database.
+    *> Different Apis needs to have different behavior:
+        -> Comment:
+            -> For comment we don't want continuous data to be interact between client & server
+            -> We will comment on the video and that's it.
+            -> For comment we will use HTTP network protocol.
+        -> VideoFrame:
+            -> For this api we need continuous video frames for let's say 10 seconds.
+            -> For this we might need to use different network protocol to happen.
+            *> Different way to request the video frame:
+                1> give request amount of frame ex: 10sec video after 10min After that we can again request for the next frame or the same frame.
+                    -> Here this is Stateless protocol
+                    -> HTTP is the stateless protocol
+                2> Another way could be to get the next 10sec video from the previously requested video frame by that specific user, where next will be known to the server
+                    -> Here this is StateFull protocol
+                    -> For that we can use:
+                        -> TCP protocol: Reliable
+                        -> UDP protocol: Real time efficient protocol
+                    -> so we will going to use WebRTC protocol.
+        -> For upload the raw video sending from the video owner we can use RTMP protocol because it is more Reliable then the WebRTC because in WebRTC there is a chance of data loss.
+    *> For database
+        -> To store the videos we can use file system solutions like: HDFS, Vimeo, AWS S3
+        -> To store the user, comments data we can use MySQL, Postgresql database.
