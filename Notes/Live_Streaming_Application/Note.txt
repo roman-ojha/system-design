@@ -39,7 +39,22 @@
                         -> TCP protocol: Reliable
                         -> UDP protocol: Real time efficient protocol
                     -> so we will going to use WebRTC protocol.
+                    -> Or specifically we can use MPEG-DASH protocol, MPEG is a protocol & DASH stand for Dynamic adaptive streaming over HTTP
         -> For upload the raw video sending from the video owner we can use RTMP protocol because it is more Reliable then the WebRTC because in WebRTC there is a chance of data loss.
     *> For database
         -> To store the videos we can use file system solutions like: HDFS, Vimeo, AWS S3
         -> To store the user, comments data we can use MySQL, Postgresql database.
+    
+    *> How we convert this RAW data and serve to customers?
+        -> For that we might first need to convert the live stream video into different resolution and then send to the customer as per requirements.
+        -> For that there needs to be some form of transformation service which will going to take the live stream video and then convert into different resolution.
+        -> To convert the raw video into segments we will first convert the raw videos into segments like 10s of video and then we will forward to convert that segments into different resolutions.
+        *> Map Reduce:
+            -> './04_Map_Reduce.png'
+            -> So to convert the raw video into different resolution we use Map reduce.
+            -> In here we can take one video, split into peaces which are 10 seconds long and then send it to different servers to get different outputs.
+            -> After completion of all the task we will store that into the database
+
+    -> Another this is do you want to store some video frame into the server as a cache, for that we can store last 10s,20s or 30s etc.. amount of video as a cache so that user can get the video as fast as possible.
+
+    -> https://youtu.be/m8Icp_Cid5o?t=2517
