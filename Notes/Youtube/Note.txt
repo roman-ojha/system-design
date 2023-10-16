@@ -1,0 +1,23 @@
+*) Functionality:
+    *) Main functional requirement
+        -> upload
+        -> watch
+    -> search
+    -> recommendation
+    -> Comment
+    *) Non functional requirement:
+        -> Reliability
+        -> Scale
+            -> There could be 1000 of concurrent user
+        -> Here, we have to Favor 'Availability' over 'Consistency'
+        -> Latency
+        
+*) High level design:
+    -> './01_load_balancer.png' Need a load balancer to distribute the request
+    -> './02_Data_Storage.png'
+    -> once the video is uploaded we will store it into the object storage as raw file like AWS S3
+    -> while upload we need 'upload(title, desc, video, uid)
+    -> while storing the video we will also store the metadata on 'NoSQL' database while collection like 'Video' & 'User'
+    -> Important: https://youtu.be/jPKTo1iGQiE?list=PL5sSYBuH9_fjenPVNtPaBvxBk8hZ501Xz&t=559
+    -> './03_Message_Queue.png', When user upload the video youtube does the encoding and compression the video to reduce the size, cause doing the compression of the video will going to take a lot of time to complete we will going to add then to a Message Queue so that then they can be send to the another service what will going to handle Encoding and we might have tons of server doing that after the video are being encoded we will then store that encoded video on the Object Storage again
+    -> './04_Cache.png' We can cache the metadata of the video that are newly uploaded because on most of the cases most views will come on the newer video
