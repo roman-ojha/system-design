@@ -1,0 +1,42 @@
+-> https://youtu.be/9-hjBGxuiEs
+*) Functional Requirement:
+    -> Post (Image + Video)
+    -> Like, Comment, Share
+    -> Add Friends
+    -> See Timeline
+    -> See a User's Post, Profile
+    -> Activity Log
+
+*) Non Functional Requirement
+    -> Read Heavy
+    -> Fast Rendering, Posting
+    -> Lag is OK
+        - means if user post something and seen by others after some seconds then it is ok
+    -> Access Pattern
+        - Means when image & video will get uploaded until 1-2 weeks there will be high traffic on that content after that the access of that content will be lower
+    -> Global
+        - Should be able to handle multiple language
+        - Accessible by any person from any where
+    -> Scale
+        - 1.7 billion DAU(Daily active user)
+        - 2.6 Billion MAU(Monthly active user)
+        - 95% User from Mobile
+            -> So, optimized for mobile devices
+        - Events/min:
+            - 150k Images
+            - 300k statuses
+            - 500k Comments
+
+*) Users
+    -> We have categories user in different segments and we will handle these user in different way
+        - Famous User
+            -> have Huge number of friends & Follower
+        - Active User
+            -> Active in 3 days
+            -> We will optimize those user so that page load for them will be faster
+        - Live User
+        - Passive user
+            -> Not Regularly active
+            -> We will not try to cache the content for them.
+        - Inactive User
+            -> Deactivate Accounts
