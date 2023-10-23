@@ -40,3 +40,33 @@
             -> We will not try to cache the content for them.
         - Inactive User
             -> Deactivate Accounts
+
+*) Architecture Components:
+    -> Divided into multiple components
+    -> Components in Black could be Load balancer, reverse proxy, authentication & authorization layer
+    -> Components in Blue are web services for the specific function.
+    -> Components in Read are the Databases, Data Store, any Cluster like Kafka cluster, Hadoop Cluster.
+
+*) Overall Architecture
+    -> './03_Overrall_Architecture.png', './04_Overrall_Architecture.png'
+    -> 'User On Boarding' components with other services:
+        - User Interaction like look into profile, creating their profile, updating their profile
+        - Service handle for user information
+        - For that we will use MySQL database because user information is the standard and a relational set of data points
+        - as well as the user information is something that will not updated very frequently
+        - we will cache the user information into redis
+        - So, first we will try to look the user information into the redis and if it finds the information then we will response that data but if doesn't find the info then get data from main database, response the data, update redis.
+        - Whenever user logged in or created the account then an even is pushed into kafka like for new account we will be doing fraud check to validate for fake account.
+    -> 'Add Friends' component with other services:
+    -> Redis Store:
+        - user_id:
+            - User Details
+            - Friends
+            - User type
+            - Relevance tags
+                -> there is a lots of information that can be shown on facebook. Let's say if we update a status about sports, Instead of send that to all of the friends, if we restrict that to only those friends who were actually interested in sports, then that will lead to an engaging conversation between me and them.
+            - Last access time
+
+
+*) Add Post, User Profile, Timelines:
+    -> https://youtu.be/9-hjBGxuiEs?t=1079
