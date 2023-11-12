@@ -69,4 +69,8 @@
 
 
 *) Add Post, User Profile, Timelines:
-    -> https://youtu.be/9-hjBGxuiEs?t=1079
+    -> https://youtu.be/9-hjBGxuiEs?t=107
+    
+
+*) Like, Comment:
+    -> https://youtu.be/9-hjBGxuiEs?t=2050
