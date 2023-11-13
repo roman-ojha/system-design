@@ -1,3 +1,4 @@
 -> https://youtu.be/6ULyxuHKxg8
 
-*) API Gateway
+*) API Gateway:
+    -> It is the Single pint of entry from all the client application
